@@ -1,0 +1,303 @@
+<template>
+  <view class="container">
+    <view class='swiper'>
+      <swiper indicator-dots="{{banner.indicatorDots}}" vertical="{{banner.vertical}}" autoplay="{{banner.autoplay}}" duration="{{banner.duration}}" interval='{{banner.interval}}' bindchange="bindchange" circular="{{banner.circular}}" style="height:{{banner.imgheights[banner.current]}}rpx;" indicator-color="{{banner.indicatorcolor}}" indicator-active-color="{{banner.indicatoractivecolor}}">
+        <block wx:for='{{banner.imgList}}' wx:key="{{index}}">
+          <swiper-item>
+            <image src="{{item}}" data-id='{{index}}' class="slide-image" mode="widthFix" bindload="imageLoad" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="tips">
+      <view class="icon">
+        <i-icon type="remind_fill" />
+      </view>
+      <swiper vertical="{{tips.vertical}}" autoplay="{{tips.autoplay}}" duration="{{tips.duration}}" interval='{{tips.interval}}'>
+        <block wx:for='{{tips.text}}' wx:key="{{index}}">
+          <swiper-item catchtouchmove="catchTouchMove">
+            <view class="text">{{item}}</view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="group">
+      <i-cell-group>
+        <i-cell title="团单进度" value="更多" is-link url="/pages/test" i-class="initCell"></i-cell>
+      </i-cell-group>
+      <view>
+        <scroll-view scroll-x>
+          <ul class="i-row">
+            <li class="i-col">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>待成团</p>
+                59
+              </navigator>
+            </li>
+            <li class="i-col">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>等发货</p>
+                59
+              </navigator>
+            </li>
+            <li class="i-col">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>已发货</p>
+                59
+              </navigator>
+            </li>
+            <li class="i-col">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>等提货</p>
+                59
+              </navigator>
+            </li>
+            <li class="i-col">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>等配送</p>
+                59
+              </navigator>
+            </li>
+          </ul>
+        </scroll-view>
+      </view>
+    </view>
+    <view class="group">
+      <i-cell-group>
+        <i-cell title="资金概况" value="更多" is-link url="/pages/test" i-class="initCell"></i-cell>
+      </i-cell-group>
+      <view>
+        <scroll-view scroll-x>
+          <ul class="i-row">
+            <li class="i-col i-flex-1">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>账户余额</p>
+                59
+              </navigator>
+            </li>
+            <li class="i-col i-flex-1">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>提现总额</p>
+                59
+              </navigator>
+            </li>
+            <li class="i-col i-flex-1">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>预估收入</p>
+                59
+              </navigator>
+            </li>
+          </ul>
+        </scroll-view>
+      </view>
+    </view>
+    <view class="group">
+      <i-cell-group>
+        <i-cell title="业绩分析" value="更多" is-link url="/pages/test" i-class="initCell"></i-cell>
+      </i-cell-group>
+      <view>
+        <scroll-view scroll-x>
+          <ul class="i-row">
+            <li class="i-col i-flex-1">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>拼团成功率</p>
+                59
+              </navigator>
+            </li>
+            <li class="i-col i-flex-1">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>推荐团长数</p>
+                59
+              </navigator>
+            </li>
+            <li class="i-col i-flex-1">
+              <navigator url="/page/navigate/navigate?title=navigate">
+                <p>团员好评率</p>
+                59
+              </navigator>
+            </li>
+          </ul>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <Itab></Itab>
+</template>
+<script>
+import wepy from 'wepy'
+// import { connect } from 'wepy-redux'
+import itab from "../components/tab";
+
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: 'SM团长',
+    "usingComponents": {
+      "i-icon": "../iview/icon/index",
+      "i-cell-group": "../iview/cell-group/index",
+      "i-cell": "../iview/cell/index",
+      "i-row": "../iview/row/index",
+      "i-col": "../iview/col/index"
+    }
+  };
+  components = {
+    Itab: itab
+  };
+  data = {
+    // 轮播图组件配置
+    banner: {
+      imgList: [
+        'https://image.sumaotong.com/258com/20180313/4e6e2e8e5f8b0505e1597bdf3dec1024.jpg',
+        'https://image.sumaotong.com/258com/20181214/5adc249d50497873ce5073305d9ba76e.jpeg',
+        'http://test.hongzequan.com/webApp/images/swws/banner/1.png'
+      ],
+      //是否采用衔接滑动  
+      circular: true,
+      //是否显示画板指示点  
+      indicatorDots: true,
+      //选中点的颜色  
+      indicatorcolor: "#000",
+      indicatoractivecolor: "#999",
+      //是否竖直  
+      vertical: false,
+      //是否自动切换  
+      autoplay: true,
+      //自动切换的间隔
+      interval: 5000,
+      //滑动动画时长毫秒  
+      duration: 100,
+      //所有图片的高度  
+      imgheights: [],
+      //图片宽度 
+      imgwidth: 750,
+      //默认  
+      current: 0,
+    },
+    // 提示框配置
+    tips: {
+      text: [
+        '[公告]夏日美白干货贴!',
+        '[公告]夏日美白干货贴!半个月白一度妥妥的',
+        '[公告]半个月白一度妥妥的',
+      ],
+      //是否竖直  
+      vertical: true,
+      //是否自动切换  
+      autoplay: true,
+      //自动切换的间隔
+      interval: 5000,
+      //滑动动画时长毫秒  
+      duration: 300,
+    }
+
+  };
+
+  methods = {
+
+    // 自适应轮播图高度
+    imageLoad: function(e) { //获取图片真实宽度  
+      var imgwidth = e.detail.width,
+        imgheight = e.detail.height,
+        //宽高比  
+        ratio = imgwidth / imgheight;
+      // console.log(imgwidth, imgheight)
+      //计算的高度值
+      var viewHeight = 750 / ratio;
+      var imgheight = viewHeight;
+      var imgheights = this.data.banner.imgheights;
+      //把每一张图片的对应的高度记录到数组里
+      imgheights[e.target.dataset.id] = imgheight;
+      this.setData({
+        imgheights: imgheights
+      })
+    },
+    bindchange: function(e) {
+      // console.log(e.detail.current)
+      this.setData({ current: e.detail.current })
+    },
+    catchTouchMove: function(res) {
+      return false
+    }
+
+  }
+  onLoad() {
+
+  }
+}
+
+</script>
+<style scoped>
+.swiper image {
+  width: 100%;
+  height: auto;
+}
+
+.tips {
+  display: flex;
+  padding: 0 10px;
+  color: #d0774f;
+  background: #fdfbec;
+  margin: 10px 0;
+}
+
+.tips .icon {
+  line-height: 28px;
+  height: 30px;
+}
+
+.tips swiper {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 6px;
+  flex: 1;
+}
+
+.tips .text {
+  font-size: 12px;
+}
+
+.group {
+  background: #fff;
+}
+
+.group:last-child {
+  margin-bottom: 10px;
+}
+
+.group .i-row {
+  padding: 10px;
+  font-size: 14px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.group .i-row .i-col {
+  flex: 0 0 100px;
+  padding-right: 10px;
+}
+
+.group .i-row .i-col navigator {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.group .i-row .i-col p {
+  display: block;
+}
+
+.group .i-row .i-flex-1 {
+  flex: 1;
+}
+.group .i-row .i-flex-1:last-child{margin-right:0;padding-right:0;}
+
+</style>
+<style>
+.initCell {
+  margin: 0 10px;
+  padding: 6px 0 !important;
+  border-bottom: 1px solid #eee;
+}
+
+</style>

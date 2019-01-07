@@ -1,0 +1,60 @@
+<style lang="less">
+  .navBox{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    z-index: 100;
+    background: #fff;
+    box-shadow: 0 0 4px rgba(0,0,0,.1);
+    navigator{
+      flex:1;
+      text-align: center;
+      height:50px;
+      padding:6px 0;
+      box-sizing: border-box;
+      font-size: 10px;
+      color: #666;
+      &.active{
+        color: #2d8cf0;
+      }
+      i-icon{
+        display: block;
+      }
+    }
+  }
+</style>
+<template lang="wxml">
+  <view class="navBox">
+    <navigator url="index" open-type="reLaunch" class="{{current == 'pages/index' ? 'active' : ''}}"><i-icon type="homepage" size="22" />首页</navigator>
+    <navigator url="order" open-type="reLaunch" class="{{current == 'pages/order' ? 'active' : ''}}"><i-icon type="group" size="22" />团单</navigator>
+    <navigator url="check" open-type="reLaunch" class="{{current == 'pages/check' ? 'active' : ''}}"><i-icon type="activity" size="22" />核销</navigator>
+    <navigator url="task" open-type="reLaunch" class="{{current == 'pages/task' ? 'active' : ''}}"><i-icon type="addressbook" size="22" />任务</navigator>
+    <navigator url="user" open-type="reLaunch" class="{{current == 'pages/user' ? 'active' : ''}}"><i-icon type="mine" size="22" />我的</navigator>
+  </view>
+</template>
+<script>
+import wepy from "wepy";
+
+export default class Com extends wepy.component {
+  props = {};
+  data = {
+    current: 'xxoo'
+  };
+  events = {
+    
+  };
+  watch = {};
+  methods = {
+   
+  };
+  watch = {
+  };
+  onLoad(){
+    this.current = this.$wxpage.route;
+    this.$apply()
+    console.log(this.current)
+  };
+}
+</script>

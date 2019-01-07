@@ -1,0 +1,150 @@
+<template>
+  <view class="container">
+    <view id="userCenter">
+      <navigator class="userInfo" url="">
+        <view class="img-box">
+          <image src="{{userInfo.imgUrl}}" mode="widthFix" />
+        </view>
+        <view class="font-box">
+          <view class="name">{{userInfo.name}} <text class="identity">{{userInfo.identity}}</text></view>
+          <view class="tel">
+            <i-icon type="mobilephone" size="28" color="#80848f" />
+            <text>{{userInfo.iphone}}</text>
+          </view>
+        </view>
+          <i-icon type="enter" />
+      </navigator>
+      <i-panel title="账户信息">
+        <i-cell-group>
+          <i-cell title="资料修改" is-link url="/pages/dashboard/index">
+            <i-icon type="addressbook" size="24" color="#80848f" slot="icon" />
+          </i-cell>
+          <i-cell title="变更手机" is-link url="/pages/dashboard/index">
+            <i-icon type="mobilephone" size="24" color="#80848f" slot="icon" />
+          </i-cell>
+          <i-cell title="实名认证" is-link url="/pages/dashboard/index">
+            <i-icon type="businesscard" size="24" color="#80848f" slot="icon" />
+          </i-cell>
+          <i-cell title="修改预留信息" is-link url="/pages/dashboard/index">
+            <i-icon type="barrage" size="24" color="#80848f" slot="icon" />
+          </i-cell>
+        </i-cell-group>
+      </i-panel>
+      <i-panel title="提现信息">
+        <i-cell-group>
+          <i-cell title="申请提现" is-link url="/pages/dashboard/index">
+            <i-icon type="redpacket" size="24" color="#80848f" slot="icon" />
+          </i-cell>
+        </i-cell-group>
+      </i-panel>
+      <i-panel title="展业小区">
+        <i-cell-group>
+          <i-cell title="我的小区" is-link url="/pages/dashboard/index">
+            <i-icon type="coordinates" size="24" color="#80848f" slot="icon" />
+          </i-cell>
+          <i-cell title="收货信息" is-link url="/pages/dashboard/index">
+            <i-icon type="label" size="24" color="#80848f" slot="icon" />
+          </i-cell>
+        </i-cell-group>
+      </i-panel>
+      <i-panel title="分享推荐">
+        <i-cell-group>
+          <i-cell title="推荐加入" is-link url="/pages/dashboard/index">
+            <i-icon type="share" size="24" color="#80848f" slot="icon" />
+          </i-cell>
+          <i-cell title="我的推荐" is-link url="/pages/dashboard/index">
+            <i-icon type="like" size="24" color="#80848f" slot="icon" />
+          </i-cell>
+        </i-cell-group>
+      </i-panel>
+    </view>
+  </view>
+  <Itab></Itab>
+</template>
+<script>
+import wepy from 'wepy'
+// import { connect } from 'wepy-redux'
+import itab from "../components/tab";
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的',
+    "usingComponents": {
+      "i-icon": "../iview/icon/index",
+      "i-cell-group": "../iview/cell-group/index",
+      "i-cell": "../iview/cell/index",
+      "i-panel": "../iview/panel/index",
+    }
+  };
+  components = {
+    Itab: itab,
+  };
+  data = {
+    userInfo: {
+      "imgUrl": "https://img2.woyaogexing.com/2018/12/30/fa2c713ff95b446e9fa23b63ebdc4316!400x400.jpeg",
+      "name": '洪泽权',
+      "iphone": "15759877967",
+      "identity": '团长'
+    }
+  };
+  methods = {
+
+  }
+  onLoad() {
+
+  }
+}
+
+</script>
+<style scoped>
+.userInfo {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+}
+
+.userInfo .img-box {
+  margin-right: 5px;
+}
+
+.userInfo .img-box image {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+}
+
+.userInfo .font-box {
+  position: relative;
+  flex: 1;
+}
+
+.userInfo .font-box .name {
+  padding-left: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.userInfo .font-box .name .identity {
+  display: inline-block;
+  border: 1px solid #666;
+  color: #666;
+  padding: 0px 4px;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.userInfo .font-box .tel {
+  font-size: 14px;
+}
+
+.userInfo navigator {
+  flex: 0 0 90px;
+  text-align: right;
+  padding: 4px;
+}
+
+</style>
+<style>
+</style>

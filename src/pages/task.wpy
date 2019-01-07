@@ -1,0 +1,132 @@
+<template>
+  <view class="container">
+    <view id="taskView">
+      <scroll-view scroll-y='true' bindscrolltolower="lower" style="height:{{scrollHeight}}px;">
+        <ul>
+          <li wx:for='{{array}}' wx:key="{{index}}">
+            <navigator url="" class="hover">
+            <view class="img-box">
+              <image  style="width:120px;height:120px;" src="{{item.src}}"></image>
+            </view>
+            <view class="font-box">
+              <h3>{{item.title}}</h3>
+              <text class="f-red">报名截止：{{item.endtime}}</text>
+              <view class="f-gray">
+                <text>起团:{{item.startGroup}}</text>
+                <text>总量:{{item.allNum}}</text>
+              </view>
+              <view class="f-gray">
+                <text>成本价:{{item.originalPrice}}</text>
+                <text>拼团价:{{item.PresentPrice}}</text>
+              </view>
+            </view>
+          </navigator>
+          <view class="profit">
+            <view>预估最低收益：<text class="f-red">2342.00</text></view>
+            <navigator url=""><i-button bind:click="handleClick" type="primary" i-class="n-btn">报名</i-button></navigator>
+          </view>
+          </li>
+        </ul>
+      </scroll-view>
+    </view>
+  </view>
+  <Itab></Itab>
+  <i-toast id="toast" />
+</template>
+<script>
+import wepy from 'wepy'
+// import { connect } from 'wepy-redux'
+import itab from "../components/tab";
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '任务大厅',
+    "usingComponents": {
+      "i-icon": "../iview/icon/index",
+      "i-button": "../iview/button/index",
+    }
+  };
+  components = {
+    Itab: itab,
+  };
+  data = {
+    array: [{
+        "src": "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        'title': "Apple/苹果 iPhone X 64G64G64G64G64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        'endtime': '5天后',
+        'startGroup': "10台",
+        "allNum": '100台',
+        "originalPrice": "1234.00",
+        "PresentPrice": '3222.00'
+      },
+      {
+        "src": "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        'title': "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        'endtime': '5天后',
+        'startGroup': "10台",
+        "allNum": '100台',
+        "originalPrice": "1234.00",
+        "PresentPrice": '3222.00'
+      },
+      {
+        "src": "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        'title': "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        'endtime': '5天后',
+        'startGroup': "10台",
+        "allNum": '100台',
+        "originalPrice": "1234.00",
+        "PresentPrice": '3222.00'
+      },
+      {
+        "src": "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        'title': "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        'endtime': '5天后',
+        'startGroup': "10台",
+        "allNum": '100台',
+        "originalPrice": "1234.00",
+        "PresentPrice": '3222.00'
+      },
+    ],
+    scrollHeight: 0, //页面高度
+  };
+  methods = {
+
+    // 滚动到底部加载更多
+    lower(e) {
+      // this.$parent.globalData.toast({
+      //   content: '加载中',
+      // });
+    },
+  }
+  onLoad() {
+    //   这里要注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        that.scrollHeight=res.windowHeight-50;
+      }
+    });
+  }
+}
+
+</script>
+<style scoped>
+.f-red{color: red;}
+.f-gray{color: #999;}
+#taskView {background: #fff;}
+#taskView ul{display: block;}
+#taskView ul li{border-bottom: 1px solid #eee;display: block;padding: 10px;}
+#taskView .hover{display: flex;border-bottom: 1px solid #eee;margin-bottom: 10px;align-items: center;}
+#taskView .hover:last-child{border-bottom: 0;}
+#taskView .img-box{width: 120px;height: 120px;margin-right: 10px;}
+#taskView .img-box image{width: 100%;height: 100%;}
+#taskView .font-box{flex: 1;}
+#taskView .font-box h3{line-height: 20px;height: 40px;text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;overflow: hidden;margin-bottom: 5px;color: #333;} 
+#taskView .font-box .f-red{display: block;margin-bottom: 10px;}
+#taskView .font-box .f-gray{display: flex;justify-content:space-between;}
+#taskView .font-box .f-gray+.f-gray{margin-top: 5px;}
+#taskView .profit{display: flex;justify-content:space-between;padding: 0 10px;align-items: center;}
+</style>
+<style>
+.n-btn{height:30px !important; margin:0 !important; line-height:30px !important;}
+</style>

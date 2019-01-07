@@ -1,0 +1,308 @@
+<template>
+  <view class="container">
+    <view id="order" style="padding-top:42px;">
+      <view class="i-fixed">
+        <i-tabs current="{{ current_scroll }}" scroll bindchange="handleChangeScroll">
+          <i-tab key="tab1" title="待成团"></i-tab>
+          <i-tab key="tab2" title="待发货"></i-tab>
+          <i-tab key="tab3" title="已发货"></i-tab>
+          <i-tab key="tab4" title="待提货"></i-tab>
+          <i-tab key="tab5" title="待配送"></i-tab>
+          <i-tab key="tab6" title="已完成"></i-tab>
+          <i-tab key="tab7" title="待退款"></i-tab>
+        </i-tabs>
+      </view>
+      <scroll-view scroll-y="true" bindscrolltolower="lower" style="height:{{scrollHeight}}px;">
+        <ul>
+          <li wx:for="{{array}}" wx:key="{{index}}">
+            <navigator url class="hover">
+              <view class="img-box">
+                <image style="width:120px;height:120px;" src="{{item.src}}">
+              </view>
+              <view class="font-box">
+                <h3>{{item.title}}</h3>
+                <text class="f-red">报名截止：{{item.endtime}}</text>
+                <view class="f-gray">
+                  <text>起团:{{item.startGroup}}</text>
+                  <text>总量:{{item.allNum}}</text>
+                </view>
+                <view class="f-gray">
+                  <text>成本价:{{item.originalPrice}}</text>
+                  <text>拼团价:{{item.PresentPrice}}</text>
+                </view>
+              </view>
+            </navigator>
+          </li>
+        </ul>
+      </scroll-view>
+    </view>
+  </view>
+  <Itab></Itab>
+</template>
+<script>
+import wepy from "wepy";
+// import { connect } from 'wepy-redux'
+import itab from "../components/tab";
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: "我的订单",
+    usingComponents: {
+      "i-tabs": "../iview/tabs/index",
+      "i-tab": "../iview/tab/index"
+    }
+  };
+  components = {
+    Itab: itab
+  };
+  data = {
+    current: "tab1",
+    current_scroll: "tab1",
+    scrollHeight: 0, //页面高度
+    array: [
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G64G64G64G64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      },
+      {
+        src:
+          "https://g-search1.alicdn.com/img/bao/uploaded/i4/TB1nYk_aGLN8KJjSZFGXXbjrVXa.jpg_360x360Q90.jpg",
+        title:
+          "Apple/苹果 iPhone X 64G 全网通4G 智能手机 苹果X 苹果10 iPhone10",
+        endtime: "5天后",
+        startGroup: "10台",
+        allNum: "100台",
+        originalPrice: "1234.00",
+        PresentPrice: "3222.00"
+      }
+    ]
+  };
+  methods = {
+    handleChange({ detail }) {
+      this.current = detail.key;
+    },
+    handleChangeScroll({ detail }) {
+      this.current_scroll = detail.key;
+    },
+    // 滚动到底部加载更多
+    lower(e) {
+      console.log("加载更多");
+    }
+  };
+  onLoad() {
+    //这里要注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        that.scrollHeight = res.windowHeight - 92;
+      }
+    });
+  }
+}
+</script>
+<style scoped>
+.i-fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1;
+}
+.f-red {
+  color: red;
+}
+
+.f-gray {
+  color: #999;
+}
+
+#order {
+  background: #fff;
+}
+
+#order ul {
+  display: block;
+}
+
+#order ul li {
+  border-bottom: 1px solid #eee;
+  display: block;
+  padding: 10px;
+}
+#order ul li:last-child{border-bottom: 0}
+
+#order .hover {
+  display: flex;
+  align-items: center;
+}
+
+#order .img-box {
+  width: 120px;
+  height: 120px;
+  margin-right: 10px;
+}
+
+#order .img-box image {
+  width: 100%;
+  height: 100%;
+}
+
+#order .font-box {
+  flex: 1;
+}
+
+#order .font-box h3 {
+  line-height: 20px;
+  height: 40px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+#order .font-box .f-red {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#order .font-box .f-gray {
+  display: flex;
+  justify-content: space-between;
+}
+
+#order .font-box .f-gray + .f-gray {
+  margin-top: 5px;
+}
+</style>
